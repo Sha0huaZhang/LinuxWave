@@ -5,9 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>LinuxWave</title>
     <style>
+        /* ================= 统一的颜色变量 ================= */
+        :root {
+            --bg-color: #f0f4f8;           /* 背景色：浅高级蓝灰 */
+            --text-main: #1a202c;          /* 主文字：深墨蓝黑 */
+            --text-sub: #718096;           /* 辅文字：灰蓝 */
+            --accent-blue: #3182ce;        /* 点缀色：亮电光蓝 */
+            --accent-orange: #dd6b20;      /* 警示色：橙黄 */
+            --card-bg: #ffffff;            /* 卡片背景：纯白 */
+            --code-bg: #2d3748;            /* 代码背景：石墨蓝黑 */
+            --code-text: #e2e8f0;          /* 代码文字：极浅灰 */
+            --border-color: #cbd5e0;       /* 边框色 */
+        }
+
+        /* ================= 基础设置 ================= */
         body {
-            background-color: #eaf1fb;
-            color: #0a1b3f;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             flex-direction: column;
@@ -20,8 +34,28 @@
             box-sizing: border-box;
         }
 
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.95;
+            max-width: 800px;
+            text-align: left;
+            color: var(--text-main);
+        }
+
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--text-main);
+        }
+
+        /* ================= 头部 Logo 卡片 ================= */
         .logo-wrapper {
-            background-color: #ffffff;
+            background-color: var(--card-bg);
             border-radius: 30px;
             padding: 12px 25px;
             display: flex;
@@ -29,7 +63,7 @@
             justify-content: center;
             gap: 0;
             margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(10, 27, 63, 0.08);
+            box-shadow: 0 10px 30px rgba(26, 32, 44, 0.08);
             min-height: 50px;
         }
 
@@ -44,25 +78,18 @@
             display: none !important;
         }
 
+        /* ================= 版本号 ================= */
         .version-block {
-            color: #5c759d;
-            font-size: 0.95rem; 
-            margin-top: -10px; 
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            margin-top: -10px;
             margin-bottom: 30px;
         }
 
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            opacity: 0.95;
-            max-width: 800px;
-            text-align: left;
-            color: #0a1b3f;
-        }
-
+        /* ================= 主按钮 ================= */
         .btn-github {
             display: inline-block;
-            background-color: #0a1b3f;
+            background-color: var(--text-main);
             color: #ffffff;
             padding: 14px 32px;
             border-radius: 30px;
@@ -74,9 +101,10 @@
 
         .btn-github:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(10, 27, 63, 0.2);
+            box-shadow: 0 8px 20px rgba(26, 32, 44, 0.2);
         }
 
+        /* ================= 代码块区域 ================= */
         .code-container {
             position: relative;
             margin-bottom: 20px;
@@ -85,13 +113,13 @@
         }
 
         pre {
-            background-color: #0a1b3f;
+            background-color: var(--code-bg);
             border-radius: 12px;
             padding: 20px;
             overflow-x: auto;
-            color: #d4d4d4;
+            color: var(--code-text);
             font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-            border: 1px solid #c0d0e8;
+            border: 1px solid var(--border-color);
             font-size: 0.9rem;
             white-space: pre-wrap;
             word-break: break-word;
@@ -101,7 +129,7 @@
         }
 
         .code-dollar {
-            color: #4a90e2;
+            color: var(--accent-blue);
             font-weight: bold;
         }
 
@@ -136,7 +164,7 @@
             left: 0;
             width: 14px;
             height: 14px;
-            border: 1.5px solid #a0b0d0;
+            border: 1.5px solid #a0aec0;
             border-radius: 2px;
             opacity: 0.9;
             transition: all 0.2s ease;
@@ -148,9 +176,9 @@
             right: 0;
             width: 14px;
             height: 14px;
-            border: 1.5px solid #a0b0d0;
+            border: 1.5px solid #a0aec0;
             border-radius: 2px;
-            background-color: rgba(10, 27, 63, 0.4);
+            background-color: rgba(45, 55, 72, 0.4);
             transition: all 0.2s ease;
             transform: translate(-4.5px, -4.5px);
         }
@@ -167,6 +195,67 @@
             opacity: 1;
         }
 
+        /* ================= 内容区标题 ================= */
+        .content-section h2 {
+            color: var(--text-main);
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 10px;
+            font-size: 1.8rem;
+        }
+
+        .content-section {
+            color: var(--text-main);
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* ================= 警告框 ================= */
+        .warning-box {
+            background-color: #fffaf0;
+            border-left: 6px solid var(--accent-orange);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(26, 32, 44, 0.05);
+        }
+
+        .warning-box p {
+            margin: 0;
+            color: var(--text-main);
+        }
+
+        .warning-box .warn-title {
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+
+        /* ================= 辅助文本 ================= */
+        .install-note {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.95;
+            max-width: 800px;
+            text-align: left;
+            color: var(--text-main);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .install-note strong {
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        .install-note .small-link-text {
+            font-size: 0.825rem;
+            display: inline-block;
+            color: var(--text-sub);
+        }
+
+        /* ================= 底部联系区 ================= */
         .contact-section {
             margin-top: 40px;
             padding: 20px 0;
@@ -175,7 +264,7 @@
 
         .contact-section h2 {
             font-size: 2rem;
-            color: #0a1b3f;
+            color: var(--text-main);
             font-weight: bold;
             margin-bottom: 8px;
             display: inline-block;
@@ -184,7 +273,7 @@
         .contact-divider {
             width: 60px;
             height: 2px;
-            background-color: #4a90e2;
+            background-color: var(--accent-blue);
             margin: 0 auto 20px auto;
         }
 
@@ -200,32 +289,31 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            color: #0a1b3f;
+            color: var(--text-main);
             font-size: 1.1rem;
         }
 
         .contact-label {
             font-weight: bold;
-            color: #0a1b3f;
+            color: var(--text-main);
         }
 
         .contact-item a {
-            color: #0a1b3f;
+            color: var(--text-main);
             text-decoration: none;
-            transition: color 0.2s;
         }
 
         .contact-item a:hover {
-            text-decoration: underline;
-            color: #4a90e2;
+            color: var(--accent-blue);
         }
 
         .contact-hint {
             font-size: 0.85rem;
-            color: #5c759d;
+            color: var(--text-sub);
             margin-top: 6px;
         }
 
+        /* ================= 免责声明 ================= */
         .disclaimer-container {
             width: 100%;
             max-width: 800px;
@@ -237,7 +325,7 @@
 
         .disclaimer {
             font-size: 0.75rem;
-            color: #5c759d;
+            color: var(--text-sub);
             line-height: 0.8;
             word-wrap: break-word;
         }
@@ -246,66 +334,10 @@
             margin-bottom: 4px;
             padding-left: 2em;
             text-indent: -2em;
+            color: var(--text-sub);
         }
 
-        .install-note {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            opacity: 0.95;
-            max-width: 800px;
-            text-align: left;
-            color: #0a1b3f;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-        .install-note strong {
-            font-weight: bold;
-            color: #0a1b3f;
-        }
-        .install-note .small-link-text {
-            font-size: 0.825rem;
-            display: inline-block;
-            color: #5c759d;
-        }
-        .install-note a {
-            color: #4a90e2;
-            text-decoration: underline;
-        }
-        .install-note a:hover {
-            color: #0a1b3f;
-        }
-
-        .content-section h2 {
-            color: #0a1b3f;
-            border-bottom: 2px solid #4a90e2;
-            padding-bottom: 10px;
-            font-size: 1.8rem;
-        }
-
-        .content-section {
-            background-color: transparent;
-            color: #0a1b3f;
-            text-align: left;
-            max-width: 800px;
-            margin: 0 auto; 
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .warning-box {
-            background-color: #fff9e6;
-            border-left: 6px solid #f1c40f; 
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-            box-shadow: 0 4px 10px rgba(10, 27, 63, 0.05);
-        }
-        
-        .warning-box p {
-            margin: 0;
-            color: #0a1b3f;
-        }
-
+        /* ================= 手机端适配 ================= */
         @media (max-width: 690.98px) {
             .logo-img.logo-1,
             .logo-img.logo-2 {
@@ -360,10 +392,10 @@
 
     <div style="margin-top: 2em;"></div>
     <div style="text-align: center; font-size: 1.2rem; font-weight: bold;">
-        <a href="https://sw.macwave.org" style="color: #0a1b3f; text-decoration: none;">Explore LinuxWave Team</a>
+        <a href="https://sw.macwave.org" style="color: var(--text-main); text-decoration: none;">Explore LinuxWave Team</a>
     </div>
     <div style="margin-top: 0.5em;"></div>
-    <div style="color: #5c759d; font-size: 0.95rem; text-align: center;">(Click to view)</div>
+    <div style="color: var(--text-sub); font-size: 0.95rem; text-align: center;">(Click to view)</div>
     <div style="margin-top: 1em;"></div>
 
     <div class="content-section">
@@ -374,7 +406,7 @@
         </p>
 
         <h2 style="margin-top: 40px;">Supported macOS Version</h2>
-        <p style="font-weight: bold; color: #0a1b3f;">
+        <p style="font-weight: bold; color: var(--text-main);">
             macOS 10.15 Catalina and above
         </p>
 
@@ -398,9 +430,7 @@
         </div>
 
         <div class="warning-box">
-            <p style="color: #f1c40f; font-weight: bold;">
-                Important:
-            </p>
+            <p class="warn-title">Important:</p>
             <p style="margin-top: 10px;">
                 After installation, <strong>restart your terminal</strong> or <strong>run the following command</strong> to apply PATH changes immediately:
             </p>
@@ -413,8 +443,8 @@
                 </button>
                 <pre><span class="code-dollar">$</span> source ~/.zshrc</pre>
             </div>
-            <p style="margin-top: 10px; color: #5c759d; font-style: italic;">
-                (If you are using bash instead of zsh, run <code style="background-color: #eaf1fb; padding: 2px 6px; border-radius: 4px; color: #0a1b3f;">source ~/.bashrc</code>)
+            <p style="margin-top: 10px; color: var(--text-sub); font-style: italic;">
+                (If you are using bash instead of zsh, run <code style="background-color: var(--bg-color); padding: 2px 6px; border-radius: 4px; color: var(--text-main);">source ~/.bashrc</code>)
             </p>
         </div>
 
@@ -434,9 +464,7 @@
         </div>
 
         <div class="warning-box">
-            <p style="color: #f1c40f; font-weight: bold;">
-                Important:
-            </p>
+            <p class="warn-title">Important:</p>
             <p style="margin-top: 10px;">
                 This command <strong>permanently removes LinuxWave and its configuration files</strong>. Make sure you have <strong>copied the entire command correctly</strong> before pressing Enter.
             </p>
@@ -451,7 +479,7 @@
         </div>
 
         <h2 style="margin-top: 40px;">Special Thanks</h2>
-        <p style="color: #0a1b3f; opacity: 1;">
+        <p style="color: var(--text-main); opacity: 1;">
             <strong>Haxx</strong> (Daniel Stenberg, Linus, Bjorn, Kjell, et al.) for <strong>cURL</strong>
         </p>
 
@@ -558,7 +586,7 @@ trollrestore        by JJTech0130
 
     <div class="disclaimer-container">
         <div class="disclaimer">
-            <p>1. WaveProxy is a sub-project of the MacWave team.Users should carefully read the agreement and possible negative impacts before operation, and bear the consequences themselves. Using LinuxWave means that you have agreed to the above conditions. LinuxWave is not responsible for any losses caused to users by LinuxWave or its software packages.</p>
+            <p>1. Users should carefully read the agreement and possible negative impacts before operation, and bear the consequences themselves. Using LinuxWave means that you have agreed to the above conditions. LinuxWave is not responsible for any losses caused to users by LinuxWave or its software packages.</p>
             <p>2. LinuxWave (especially beta versions) may affect users due to code defects, security issues, etc. Users should be aware of and accept this risk, otherwise please do not use it. LinuxWave is not responsible for any losses caused to users' devices, etc.</p>
             <p>3. LinuxWave only provides links to software packages, not the software packages themselves. LinuxWave is not responsible for any losses caused to users due to security vulnerabilities, malicious code, etc. of the software packages themselves. If users violate the software package agreement, LinuxWave is not responsible.</p>
             <p>4. The software packages distributed by LinuxWave are for legitimate purposes such as learning and research only. They are prohibited for cracking, attacks, or other illegal activities. If losses are caused by improper use, LinuxWave is not responsible.</p>
@@ -593,7 +621,7 @@ trollrestore        by JJTech0130
             <p>33. LinuxWave is not responsible for any losses suffered by users due to force majeure.</p>
             <p>34. LinuxWave has no cooperation with any company or profit-making organization. Any claims of cooperation with LinuxWave by companies or profit-making organizations are counterfeit. LinuxWave is not responsible for any losses caused by this.</p>
             <br><br>
-            <p>1. WaveProxy隶属于MacWave团队。用户在操作前应仔细阅读协议及可能造成的负面影响，并自行承担后果，使用LinuxWave即视为已达成上述条件。LinuxWave及其软件包对使用者造成损失的，LinuxWave不承担责任</p>
+            <p>1. 用户在操作前应仔细阅读协议及可能造成的负面影响，并自行承担后果，使用LinuxWave即视为已达成上述条件。LinuxWave及其软件包对使用者造成损失的，LinuxWave不承担责任</p>
             <p>2. LinuxWave（尤其是beta版）可能由于自身代码缺陷、安全问题等对用户造成影响，用户应知悉并接受这一风险，否则请勿使用。对用户的设备等造成损失的，LinuxWave不承担责任</p>
             <p>3. LinuxWave仅提供指向软件包的链接，不提供软件包本身。软件包因本身的安全漏洞、恶意代码等对用户造成损失的，LinuxWave不承担责任。用户如果违反软件包协议，LinuxWave不承担责任</p>
             <p>4. LinuxWave分发的软件包仅供学习、研究等正当用途，禁止用于破解、攻击等行为。如果用于不正当用途造成损失，LinuxWave不承担责任</p>
