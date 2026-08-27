@@ -107,12 +107,12 @@
             font-weight: bold;
         }
 
-        /* 复制按钮：背景固定为纯白色 */
+        /* 复制按钮：去除外围圆角背景，只保留图标 */
         .copy-btn {
             position: absolute;
             top: 12px;
             right: 12px;
-            background: #ffffff; 
+            background: transparent; /* 去掉外围白色圆角 */
             border: none;
             cursor: pointer;
             padding: 6px;
@@ -124,7 +124,7 @@
         }
 
         .copy-btn:hover {
-            opacity: 0.85;
+            opacity: 0.8;
         }
 
         .copy-icon {
@@ -133,41 +133,43 @@
             height: 18px;
         }
 
-        /* 正方形图标本体：颜色改为代码块背景色 #D38301 */
+        /* 后面的正方形：纯白色填充 */
         .square-back {
             position: absolute;
             top: 0;
             left: 0;
             width: 14px;
             height: 14px;
-            border: 1.5px solid #D38301; 
+            border: 1.5px solid #ffffff;
             border-radius: 2px;
-            opacity: 0.9;
+            background-color: #ffffff; 
+            opacity: 1;
             transition: all 0.2s ease;
         }
 
+        /* 前面的正方形：仅有白色边框，内部透明 */
         .square-front {
             position: absolute;
             bottom: 0;
             right: 0;
             width: 14px;
             height: 14px;
-            border: 1.5px solid #D38301;
+            border: 1.5px solid #ffffff;
             border-radius: 2px;
-            background-color: #D38301;
+            background-color: transparent;
             transition: all 0.2s ease;
             transform: translate(-4.5px, -4.5px);
         }
 
         .copy-btn:hover .square-back,
         .copy-btn:hover .square-front {
-            border-color: #563D00;
+            border-color: #ffffff;
         }
 
         .copy-btn.copied .square-back,
         .copy-btn.copied .square-front {
-            background-color: #563D00;
-            border-color: transparent;
+            background-color: #ffffff;
+            border-color: #ffffff;
             opacity: 1;
         }
 
