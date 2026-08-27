@@ -20,6 +20,7 @@
             box-sizing: border-box;
         }
 
+        /* 最顶端卡片：默认高度（适用于 ≥768px，即 7.2寸及以上设备，显示 logo1 和 logo2，隐藏 logo3） */
         .logo-wrapper {
             background-color: #ffffff;
             border-radius: 30px;
@@ -31,20 +32,70 @@
             margin-bottom: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             min-height: 50px;
+            height: auto; 
         }
 
-        .logo-img {
-            height: 50px;
-            width: auto;
+        /* 桌面端/大屏默认显示前两张图 */
+        .logo-img.logo-1,
+        .logo-img.logo-2 {
             display: block;
-            border-radius: 0;
         }
-
         .logo-img.logo-3 {
             display: none !important;
         }
 
-        /* ========== 电脑端版本号一行，有空格 ========== */
+        /* 媒体查询：屏幕宽度在 418px 到 768px 之间（≥418px 且 < 7.2寸），卡片高度为 50px */
+        @media (min-width: 418px) and (max-width: 767.98px) {
+            .logo-wrapper {
+                height: 50px;
+            }
+        }
+
+        /* 媒体查询：屏幕宽度 < 418px 时，卡片高度为 40px */
+        @media (max-width: 417.98px) {
+            .logo-wrapper {
+                height: 40px;
+            }
+        }
+
+        /* ========== 手机端（< 690.98px）：隐藏前两张，显示第三张 ========== */
+        @media (max-width: 690.98px) {
+            .logo-img.logo-1,
+            .logo-img.logo-2 {
+                display: none !important;
+            }
+            .logo-img.logo-3 {
+                display: block !important;
+                height: 42px;
+            }
+            .logo-wrapper {
+                padding: 4px 18px !important;
+            }
+
+            /* 版本号：强制两行，无空格 */
+            .version-block .v-line {
+                display: block !important;
+                margin: 0 !important;
+                line-height: 1.6 !important;
+            }
+            .version-block .v-line:first-child::after {
+                content: "" !important;
+            }
+            .version-block {
+                text-align: center !important;
+                letter-spacing: 0 !important;
+                font-size: 0.95rem !important;
+                margin-top: -10px !important;
+                margin-bottom: 30px !important;
+            }
+
+            /* 手机端描述居中 */
+            .tagline {
+                text-align: center !important;
+            }
+        }
+
+        /* 电脑端版本号一行，有空格 */
         .version-block .v-line {
             display: inline;
         }
@@ -93,7 +144,7 @@
             overflow-x: auto;
             color: #563D00;
             font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-            border: 1px solid rgba(246, 182, 70, 0.5); /* 改为F6B646，透明度50% */
+            border: 1px solid rgba(246, 182, 70, 0.5); 
             font-size: 0.9rem;
             white-space: pre-wrap;
             word-break: break-word;
@@ -112,7 +163,7 @@
             position: absolute;
             top: 12px;
             right: 12px;
-            background: transparent; /* 去掉外围白色圆角 */
+            background: transparent; 
             border: none;
             cursor: pointer;
             padding: 6px;
@@ -280,43 +331,6 @@
         }
         .install-note a:hover {
             opacity: 0.8;
-        }
-
-        /* ========== 手机端 ========== */
-        @media (max-width: 690.98px) {
-            .logo-img.logo-1,
-            .logo-img.logo-2 {
-                display: none !important;
-            }
-            .logo-img.logo-3 {
-                display: block !important;
-                height: 42px;
-            }
-            .logo-wrapper {
-                padding: 4px 18px !important;
-            }
-
-            /* 版本号：强制两行，无空格 */
-            .version-block .v-line {
-                display: block !important;
-                margin: 0 !important;
-                line-height: 1.6 !important;
-            }
-            .version-block .v-line:first-child::after {
-                content: "" !important;
-            }
-            .version-block {
-                text-align: center !important;
-                letter-spacing: 0 !important;
-                font-size: 0.95rem !important;
-                margin-top: -10px !important;
-                margin-bottom: 30px !important;
-            }
-
-            /* 手机端描述居中 */
-            .tagline {
-                text-align: center !important;
-            }
         }
     </style>
 </head>
