@@ -107,7 +107,7 @@
             font-weight: bold;
         }
 
-        /* 复制按钮改为纯白色 */
+        /* 复制按钮：背景固定为纯白色 */
         .copy-btn {
             position: absolute;
             top: 12px;
@@ -133,15 +133,16 @@
             height: 18px;
         }
 
+        /* 正方形图标本体：颜色改为代码块背景色 #D38301 */
         .square-back {
             position: absolute;
             top: 0;
             left: 0;
             width: 14px;
             height: 14px;
-            border: 1.5px solid #563D00; 
+            border: 1.5px solid #D38301; 
             border-radius: 2px;
-            opacity: 0.7;
+            opacity: 0.9;
             transition: all 0.2s ease;
         }
 
@@ -151,16 +152,16 @@
             right: 0;
             width: 14px;
             height: 14px;
-            border: 1.5px solid #563D00;
+            border: 1.5px solid #D38301;
             border-radius: 2px;
-            background-color: #ffffff;
+            background-color: #D38301;
             transition: all 0.2s ease;
             transform: translate(-4.5px, -4.5px);
         }
 
         .copy-btn:hover .square-back,
         .copy-btn:hover .square-front {
-            border-color: #000000;
+            border-color: #563D00;
         }
 
         .copy-btn.copied .square-back,
