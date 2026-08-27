@@ -5,20 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>LinuxWave</title>
     <style>
-        /* ================= 统一的颜色变量 ================= */
+        /* ============ 严格匹配图片的配色方案 ============ */
         :root {
-            --bg-color: #f0f4f8;           /* 背景色：浅高级蓝灰 */
-            --text-main: #1a202c;          /* 主文字：深墨蓝黑 */
-            --text-sub: #718096;           /* 辅文字：灰蓝 */
-            --accent-blue: #3182ce;        /* 点缀色：亮电光蓝 */
-            --accent-orange: #dd6b20;      /* 警示色：橙黄 */
-            --card-bg: #ffffff;            /* 卡片背景：纯白 */
-            --code-bg: #2d3748;            /* 代码背景：石墨蓝黑 */
-            --code-text: #e2e8f0;          /* 代码文字：极浅灰 */
-            --border-color: #cbd5e0;       /* 边框色 */
+            --bg-color: #a8c8f0;      /* 图片里的浅蓝背景 */
+            --text-main: #1447a3;     /* 图片里的深蓝文字/图案 */
+            --accent-blue: #1a5ac9;   /* 亮蓝点缀（用于链接、边框） */
+            --card-bg: #ffffff;       /* 白色卡片底 */
+            --code-bg: #1447a3;       /* 深蓝代码块背景 */
+            --code-text: #ffffff;     /* 代码白色文字 */
+            --border-color: #1447a3;  /* 深蓝边框 */
+            --warn-bg: #fff3cd;       /* 警告框底色（浅黄） */
+            --warn-border: #ffc107;   /* 警告框亮黄边框 */
+            --warn-text: #856404;     /* 警告框深黄文字 */
+            --sub-text: #6b82b0;      /* 次级文字（稍微淡化一点的蓝） */
         }
 
-        /* ================= 基础设置 ================= */
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
@@ -37,7 +38,6 @@
         p {
             font-size: 1.1rem;
             line-height: 1.6;
-            opacity: 0.95;
             max-width: 800px;
             text-align: left;
             color: var(--text-main);
@@ -46,14 +46,15 @@
         a {
             color: var(--accent-blue);
             text-decoration: none;
-            transition: color 0.2s;
+            transition: opacity 0.2s;
         }
 
         a:hover {
-            color: var(--text-main);
+            opacity: 0.8;
+            text-decoration: underline;
         }
 
-        /* ================= 头部 Logo 卡片 ================= */
+        /* 头部 Logo 卡片：白底蓝字 */
         .logo-wrapper {
             background-color: var(--card-bg);
             border-radius: 30px;
@@ -63,7 +64,7 @@
             justify-content: center;
             gap: 0;
             margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(26, 32, 44, 0.08);
+            box-shadow: 0 10px 30px rgba(20, 71, 163, 0.2);
             min-height: 50px;
         }
 
@@ -71,22 +72,21 @@
             height: 50px;
             width: auto;
             display: block;
-            border-radius: 0;
         }
 
         .logo-img.logo-3 {
             display: none !important;
         }
 
-        /* ================= 版本号 ================= */
+        /* 版本号 */
         .version-block {
-            color: var(--text-sub);
+            color: var(--sub-text);
             font-size: 0.95rem;
             margin-top: -10px;
             margin-bottom: 30px;
         }
 
-        /* ================= 主按钮 ================= */
+        /* 主按钮：深蓝底白字 */
         .btn-github {
             display: inline-block;
             background-color: var(--text-main);
@@ -101,10 +101,12 @@
 
         .btn-github:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(26, 32, 44, 0.2);
+            box-shadow: 0 8px 20px rgba(20, 71, 163, 0.3);
+            opacity: 1;
+            text-decoration: none;
         }
 
-        /* ================= 代码块区域 ================= */
+        /* 代码块：深蓝底白字 */
         .code-container {
             position: relative;
             margin-bottom: 20px;
@@ -119,7 +121,7 @@
             overflow-x: auto;
             color: var(--code-text);
             font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-            border: 1px solid var(--border-color);
+            border: 1px solid #0a2e6b;
             font-size: 0.9rem;
             white-space: pre-wrap;
             word-break: break-word;
@@ -129,10 +131,11 @@
         }
 
         .code-dollar {
-            color: var(--accent-blue);
+            color: #7ab8ff; /* 亮蓝色用于$符号，在深蓝底上更醒目 */
             font-weight: bold;
         }
 
+        /* 复制按钮 */
         .copy-btn {
             position: absolute;
             top: 12px;
@@ -164,7 +167,7 @@
             left: 0;
             width: 14px;
             height: 14px;
-            border: 1.5px solid #a0aec0;
+            border: 1.5px solid #a0c0e8;
             border-radius: 2px;
             opacity: 0.9;
             transition: all 0.2s ease;
@@ -176,9 +179,9 @@
             right: 0;
             width: 14px;
             height: 14px;
-            border: 1.5px solid #a0aec0;
+            border: 1.5px solid #a0c0e8;
             border-radius: 2px;
-            background-color: rgba(45, 55, 72, 0.4);
+            background-color: rgba(20, 71, 163, 0.4);
             transition: all 0.2s ease;
             transform: translate(-4.5px, -4.5px);
         }
@@ -195,7 +198,7 @@
             opacity: 1;
         }
 
-        /* ================= 内容区标题 ================= */
+        /* 内容区标题：深蓝字+亮蓝下划线 */
         .content-section h2 {
             color: var(--text-main);
             border-bottom: 2px solid var(--accent-blue);
@@ -212,31 +215,30 @@
             box-sizing: border-box;
         }
 
-        /* ================= 警告框 ================= */
+        /* 警告框：黄底深黄字 */
         .warning-box {
-            background-color: #fffaf0;
-            border-left: 6px solid var(--accent-orange);
+            background-color: var(--warn-bg);
+            border-left: 6px solid var(--warn-border);
             padding: 15px 20px;
             border-radius: 8px;
             margin-top: 20px;
-            box-shadow: 0 4px 10px rgba(26, 32, 44, 0.05);
+            box-shadow: 0 4px 10px rgba(20, 71, 163, 0.1);
         }
 
         .warning-box p {
             margin: 0;
-            color: var(--text-main);
+            color: var(--warn-text);
         }
 
         .warning-box .warn-title {
-            color: var(--accent-orange);
+            color: var(--warn-text);
             font-weight: bold;
         }
 
-        /* ================= 辅助文本 ================= */
+        /* 说明文本 */
         .install-note {
             font-size: 1.1rem;
             line-height: 1.6;
-            opacity: 0.95;
             max-width: 800px;
             text-align: left;
             color: var(--text-main);
@@ -252,10 +254,10 @@
         .install-note .small-link-text {
             font-size: 0.825rem;
             display: inline-block;
-            color: var(--text-sub);
+            color: var(--sub-text);
         }
 
-        /* ================= 底部联系区 ================= */
+        /* 联系区 */
         .contact-section {
             margin-top: 40px;
             padding: 20px 0;
@@ -304,16 +306,17 @@
         }
 
         .contact-item a:hover {
+            text-decoration: underline;
             color: var(--accent-blue);
         }
 
         .contact-hint {
             font-size: 0.85rem;
-            color: var(--text-sub);
+            color: var(--sub-text);
             margin-top: 6px;
         }
 
-        /* ================= 免责声明 ================= */
+        /* 免责声明：浅蓝底+稍浅蓝字 */
         .disclaimer-container {
             width: 100%;
             max-width: 800px;
@@ -325,7 +328,7 @@
 
         .disclaimer {
             font-size: 0.75rem;
-            color: var(--text-sub);
+            color: var(--sub-text);
             line-height: 0.8;
             word-wrap: break-word;
         }
@@ -334,10 +337,10 @@
             margin-bottom: 4px;
             padding-left: 2em;
             text-indent: -2em;
-            color: var(--text-sub);
+            color: var(--sub-text);
         }
 
-        /* ================= 手机端适配 ================= */
+        /* 手机端适配 */
         @media (max-width: 690.98px) {
             .logo-img.logo-1,
             .logo-img.logo-2 {
@@ -395,7 +398,7 @@
         <a href="https://sw.macwave.org" style="color: var(--text-main); text-decoration: none;">Explore LinuxWave Team</a>
     </div>
     <div style="margin-top: 0.5em;"></div>
-    <div style="color: var(--text-sub); font-size: 0.95rem; text-align: center;">(Click to view)</div>
+    <div style="color: var(--sub-text); font-size: 0.95rem; text-align: center;">(Click to view)</div>
     <div style="margin-top: 1em;"></div>
 
     <div class="content-section">
@@ -443,8 +446,8 @@
                 </button>
                 <pre><span class="code-dollar">$</span> source ~/.zshrc</pre>
             </div>
-            <p style="margin-top: 10px; color: var(--text-sub); font-style: italic;">
-                (If you are using bash instead of zsh, run <code style="background-color: var(--bg-color); padding: 2px 6px; border-radius: 4px; color: var(--text-main);">source ~/.bashrc</code>)
+            <p style="margin-top: 10px; color: var(--sub-text); font-style: italic;">
+                (If you are using bash instead of zsh, run <code style="background-color: #e0ebfa; padding: 2px 6px; border-radius: 4px; color: var(--text-main);">source ~/.bashrc</code>)
             </p>
         </div>
 
@@ -479,7 +482,7 @@
         </div>
 
         <h2 style="margin-top: 40px;">Special Thanks</h2>
-        <p style="color: var(--text-main); opacity: 1;">
+        <p style="color: var(--text-main);">
             <strong>Haxx</strong> (Daniel Stenberg, Linus, Bjorn, Kjell, et al.) for <strong>cURL</strong>
         </p>
 
