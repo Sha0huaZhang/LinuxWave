@@ -30,7 +30,6 @@
             gap: 0;
             margin-bottom: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            /* min-height: 50px; */
         }
 
         .logo-img {
@@ -60,6 +59,10 @@
             max-width: 800px;
             text-align: left;
             color: #563D00;
+            /* 添加长单词换行 */
+            word-break: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
         }
 
         .btn-github {
@@ -93,12 +96,18 @@
             overflow-x: auto;
             color: #563D00;
             font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-            border: 1px solid rgba(246, 182, 70, 0.5); /* 改为F6B646，透明度50% */
+            border: 1px solid rgba(246, 182, 70, 0.5);
             font-size: 0.9rem;
             white-space: pre-wrap;
-            word-break: break-word;
+            word-break: break-all;
+            overflow-wrap: break-word;
             text-align: left;
             margin: 0;
+            padding-right: 20px;
+        }
+
+        /* 有复制按钮的pre，添加右侧padding */
+        .code-container.has-copy-btn pre {
             padding-right: 70px;
         }
 
@@ -112,7 +121,7 @@
             position: absolute;
             top: 12px;
             right: 12px;
-            background: transparent; /* 去掉外围白色圆角 */
+            background: transparent;
             border: none;
             cursor: pointer;
             padding: 6px;
@@ -133,7 +142,6 @@
             height: 18px;
         }
 
-        /* 后面的正方形：纯白色填充 */
         .square-back {
             position: absolute;
             top: 0;
@@ -147,7 +155,6 @@
             transition: all 0.2s ease;
         }
 
-        /* 前面的正方形：仅有白色边框，内部透明 */
         .square-front {
             position: absolute;
             bottom: 0;
@@ -246,8 +253,9 @@
             font-size: 0.75rem;
             color: #ffffff;
             opacity: 0.7;
-            line-height: 0.8;
+            line-height: 1.4;
             word-wrap: break-word;
+            word-break: break-word;
         }
 
         .disclaimer p {
@@ -265,6 +273,8 @@
             color: #563D00;
             margin-top: 0;
             margin-bottom: 10px;
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
         .install-note strong {
             font-weight: bold;
@@ -282,6 +292,25 @@
             opacity: 0.8;
         }
 
+        /* 修改所有正文段落和标题的换行 */
+        .content-section h2 {
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .content-section p {
+            word-break: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
+        /* 特别处理无复制按钮的pre */
+        .code-container:not(.has-copy-btn) pre {
+            padding-right: 20px;
+            word-break: break-all;
+            overflow-wrap: anywhere;
+        }
+
         /* ========== 手机端 ========== */
         @media (max-width: 690.98px) {
             .logo-img.logo-1,
@@ -296,7 +325,6 @@
                 padding: 4px 18px !important;
             }
 
-            /* 版本号：强制两行，无空格 */
             .version-block .v-line {
                 display: block !important;
                 margin: 0 !important;
@@ -313,7 +341,6 @@
                 margin-bottom: 30px !important;
             }
 
-            /* 手机端描述居中 */
             .tagline {
                 text-align: center !important;
             }
@@ -337,7 +364,6 @@
 
     <a href="https://github.com/Sha0huaZhang/MacWave" class="btn-github">View On GitHub</a>
 
-    <!-- 新增区域：与 View on GitHub 间距扩大到4倍（0.5em → 2em） -->
     <div style="margin-top: 2em;"></div>
     <div style="text-align: center; font-size: 1.2rem; font-weight: bold;">
         <a href="https://sw.macwave.org" style="color: #563D00; text-decoration: none;">Explore MacWave Team</a>
@@ -367,7 +393,7 @@
         <p style="font-size: 1.1rem; line-height: 1.6; opacity: 0.9; color: #563D00;">
             In the terminal, run the following command:
         </p>
-        <div class="code-container">
+        <div class="code-container has-copy-btn">
             <button class="copy-btn" onclick="copyCode(this)">
                 <div class="copy-icon">
                     <div class="square-back"></div>
@@ -384,7 +410,7 @@
             <p style="margin: 10px 0 0 0; font-size: 1rem; line-height: 1.5; color: #563D00;">
                 After installation, <strong>restart your terminal</strong> or <strong>run the following command</strong> to apply PATH changes immediately:
             </p>
-            <div class="code-container" style="margin-top: 10px;">
+            <div class="code-container has-copy-btn" style="margin-top: 10px;">
                 <button class="copy-btn" onclick="copyCode(this)">
                     <div class="copy-icon">
                         <div class="square-back"></div>
@@ -402,15 +428,14 @@
         <p style="font-size: 1.1rem; line-height: 1.6; opacity: 0.9; color: #563D00;">
             To completely remove MacWave from your system, run the following command in your terminal:
         </p>
-        <div class="code-container">
+        <div class="code-container has-copy-btn">
             <button class="copy-btn" onclick="copyCode(this)">
                 <div class="copy-icon">
                     <div class="square-back"></div>
                     <div class="square-front"></div>
                 </div>
             </button>
-            <pre>/bin/bash -c "INSTALL_DIR=\"\$HOME/.local/macwave\"; echo -e \"\033[31mYou are deleting MacWave, are you sure? [Y/n]\033[0m\"; read -n 1 -r; echo; if [[ ! \$REPLY =~ ^[Yy]\$ ]]; then echo \"🌊 Uninstall cancelled.\"; exit 0; fi; if [ -d \"\$INSTALL_DIR\" ]; then echo \"🌊 Removing \$INSTALL_DIR...\"; rm -rf \"\$INSTALL_DIR\"; else echo \"🌊 MacWave installation directory not found. Skipping.\"; fi; for RC_FILE in \"\$HOME/.zshrc\" \"\$HOME/.bashrc\"; do if [ -f \"\$RC_FILE\" ]; then sed -i '' '/# MacWave/d' \"\$RC_FILE\" 2>/dev/null || true; sed -i '' '/export PATH=\".*macwave\/bin/d' \"\$RC_FILE\" 2>/dev/null || true; echo \"🌊 Removed MacWave PATH entries from \$RC_FILE\"; fi; done; echo \"\"; echo \"🌊 MacWave has been uninstalled.\"; echo \"🌊 Please restart your terminal to apply changes.\""
-</pre>
+            <pre>/bin/bash -c "INSTALL_DIR=\"\$HOME/.local/macwave\"; echo -e \"\033[31mYou are deleting MacWave, are you sure? [Y/n]\033[0m\"; read -n 1 -r; echo; if [[ ! \$REPLY =~ ^[Yy]\$ ]]; then echo \"🌊 Uninstall cancelled.\"; exit 0; fi; if [ -d \"\$INSTALL_DIR\" ]; then echo \"🌊 Removing \$INSTALL_DIR...\"; rm -rf \"\$INSTALL_DIR\"; else echo \"🌊 MacWave installation directory not found. Skipping.\"; fi; for RC_FILE in \"\$HOME/.zshrc\" \"\$HOME/.bashrc\"; do if [ -f \"\$RC_FILE\" ]; then sed -i '' '/# MacWave/d' \"\$RC_FILE\" 2>/dev/null || true; sed -i '' '/export PATH=\".*macwave\/bin/d' \"\$RC_FILE\" 2>/dev/null || true; echo \"🌊 Removed MacWave PATH entries from \$RC_FILE\"; fi; done; echo \"\"; echo \"🌊 MacWave has been uninstalled.\"; echo \"🌊 Please restart your terminal to apply changes.\""</pre>
         </div>
 
         <div class="warning-box" style="background-color: #D38301; border-left: 6px solid #B51A00; padding: 15px 20px; border-radius: 8px; margin-top: 20px;">
