@@ -2,7 +2,7 @@
 """
 LinuxWave
 A package manager for Linux jailbreak developers.
-Version: 2.0.0-beta2(240E1644)
+Version: 2.0RC
 """
 
 import argparse
