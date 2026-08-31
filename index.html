@@ -400,7 +400,7 @@
                     <div class="square-front"></div>
                 </div>
             </button>
-            <pre><span class="code-dollar">$</span> /bin/bash -c "$(curl -fsSL https://macwave.org/install.sh)"</pre>
+            <pre><span class="code-dollar">$</span> /bin/bash -c "$(curl -fsSL https://linuxwave.macwave.org/install.sh)"</pre>
         </div>
 
         <div class="warning-box" style="background-color: #D38301; border-left: 6px solid #B51A00; padding: 15px 20px; border-radius: 8px; margin-top: 20px;">
@@ -426,7 +426,7 @@
 
         <h2 style="font-size: 1.8rem; border-bottom: 2px solid #D38301; padding-bottom: 10px; margin-top: 40px; color: #563D00;">Uninstall MacWave</h2>
         <p style="font-size: 1.1rem; line-height: 1.6; opacity: 0.9; color: #563D00;">
-            To completely remove MacWave from your system, run the following command in your terminal:
+            To completely remove LinuxWave from your system, run the following command in your terminal:
         </p>
         <div class="code-container has-copy-btn">
             <button class="copy-btn" onclick="copyCode(this)">
@@ -435,7 +435,7 @@
                     <div class="square-front"></div>
                 </div>
             </button>
-            <pre>/bin/bash -c "INSTALL_DIR=\"\$HOME/.local/macwave\"; echo -e \"\033[31mYou are deleting MacWave, are you sure? [Y/n]\033[0m\"; read -n 1 -r; echo; if [[ ! \$REPLY =~ ^[Yy]\$ ]]; then echo \"🌊 Uninstall cancelled.\"; exit 0; fi; if [ -d \"\$INSTALL_DIR\" ]; then echo \"🌊 Removing \$INSTALL_DIR...\"; rm -rf \"\$INSTALL_DIR\"; else echo \"🌊 MacWave installation directory not found. Skipping.\"; fi; for RC_FILE in \"\$HOME/.zshrc\" \"\$HOME/.bashrc\"; do if [ -f \"\$RC_FILE\" ]; then sed -i '' '/# MacWave/d' \"\$RC_FILE\" 2>/dev/null || true; sed -i '' '/export PATH=\".*macwave\/bin/d' \"\$RC_FILE\" 2>/dev/null || true; echo \"🌊 Removed MacWave PATH entries from \$RC_FILE\"; fi; done; echo \"\"; echo \"🌊 MacWave has been uninstalled.\"; echo \"🌊 Please restart your terminal to apply changes.\""</pre>
+            <pre>/bin/bash -c "$(curl -fsSL https://linuxwave.macwave.org/uninstall.sh)"</pre>
         </div>
 
         <div class="warning-box" style="background-color: #D38301; border-left: 6px solid #B51A00; padding: 15px 20px; border-radius: 8px; margin-top: 20px;">
